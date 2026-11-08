@@ -7,6 +7,8 @@ mongodb_app_name: mongod
 mysql_app_name: mysqld
 node_app_name: nodejs
 node_app_version: v4
+mongodb_host: mongodb.arjundaws92s.store
+redis_host: redis.arjundaws92s.store
 mysql_host: mysql.arjundaws92s.store
 rabbitmq_host: rabbitmq.arjundaws92s.store
 catalogue_host: catalogue.arjundaws92s.store
