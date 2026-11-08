@@ -1,0 +1,18 @@
+- name: disable nodejs default 16 version
+  command: dnf module disable nodejs -y
+
+- name: enable nodejs 24 version
+  command: dnf module enable nodejs:24 -y
+
+- name: install nodejs 24
+  package:
+    name: "{{ node_app_name }}"
+    state: present
+
+- name: check nodejs version
+  command: node -v
+
+- name: install npm dependencies
+  community.general.npm:
+    path: /app
+    state: present
