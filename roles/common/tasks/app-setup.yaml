@@ -6,7 +6,7 @@
 
 - name: install nodejs 24
   package:
-    name: "{{ app_name }}"
+    name: "{{ node_app_name }}"
     state: present
 
 - name: check nodejs version
@@ -37,7 +37,7 @@
 
 - name: download catalogue application
   get_url:
-    url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/catalogue-{{ app_version }}.zip
+    url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/catalogue-{{ node_app_version }}.zip
     dest: /tmp/catalogue.zip
 
 - name: unarchive catalogue application

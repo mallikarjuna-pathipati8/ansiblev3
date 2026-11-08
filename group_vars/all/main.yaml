@@ -5,3 +5,5 @@ rabbitmq_user: "{{ vault_rabbitmq_user }}"
 rabbitmq_password: "{{ vault_rabbitmq_password }}"
 mongodb_app_name: mongod
 mysql_app_name: mysqld
+node_app_name: nodejs
+node_app_version: v4
