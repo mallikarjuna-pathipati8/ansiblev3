@@ -16,5 +16,6 @@ user_host: user.arjundaws92s.store
 cart_host: cart.arjundaws92s.store
 shipping_host: shipping.arjundaws92s.store
 payment_host: payment.arjundaws92s.store
+
 shipping_db_user: shipping
 shipping_db_password: RoboShop@1
