@@ -25,9 +25,9 @@
     path: /app
     state: absent
 
-- name: remove existing catalogue.zip file
+- name: remove existing {{ component }}.zip file
   file:
-    path: /tmp/catalogue.zip
+    path: /tmp/{{ component }}.zip
     state: absent
 
 - name: create /app directory
@@ -35,14 +35,14 @@
     path: /app
     state: directory
 
-- name: download catalogue application
+- name: download {{ component }} application
   get_url:
-    url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/catalogue-{{ node_app_version }}.zip
-    dest: /tmp/catalogue.zip
+    url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/{{ component }}-{{ node_app_version }}.zip
+    dest: /tmp/{{ component }}.zip
 
-- name: unarchive catalogue application
+- name: unarchive {{ component }} application
   unarchive:
-    src: /tmp/catalogue.zip
+    src: /tmp/{{ component }}.zip
     dest: /app
     remote_src: yes
 
@@ -51,10 +51,10 @@
     path: /app
     state: present
 
-- name: copy catalogue.service file
+- name: copy {{ component }}.service file
   template:
-    src: catalogue.service.j2
-    dest: /etc/systemd/system/catalogue.service
+    src: "{{ component }}.service.j2"
+    dest: /etc/systemd/system/{{ component }}.service
 
 - name: copy mongo repo
   copy:
@@ -67,7 +67,7 @@
     state: present
 
 - name: check products loaded or not
-  command: mongosh --host '{{ mongodb_host }}' --quiet --eval 'db.getSiblingDB("catalogue").products.countDocuments()'
+  command: mongosh --host '{{ mongodb_host }}' --quiet --eval 'db.getSiblingDB("{{ component }}").products.countDocuments()'
   register: product_count
 
 - name: print product count
@@ -82,8 +82,8 @@
   systemd_service:
     daemon_reload: true
 
-- name: start and enable catalogue
+- name: start and enable {{ component }}
   service:
-    name: catalogue
+    name: { { component } }
     state: restarted
     enabled: yes
