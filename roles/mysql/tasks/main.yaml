@@ -9,10 +9,10 @@
 - name: start and enable mysqld
   service:
     # name: "{{ app_name }}"
-    name: mysqld
+    name: "{{ mysql_app_name }}"
     state: started
     enabled: yes
 
 - name: set root password for mysql
   # command: mysql_secure_installation --set-root-pass "{{ mysql_root_password }}"
-  command: mysql_secure_installation --set-root-pass RoboShop@1
+  command: mysql_secure_installation --set-root-pass "{{ mysql_root_password }}"

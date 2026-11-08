@@ -10,7 +10,7 @@
 
 - name: Start and stop Mongodb
   service:
-    name: mongod
+    name: "{{ mongodb_app_name }}"
     state: started
     enabled: yes
 
@@ -22,5 +22,5 @@
 
 - name: Restart the Mongod service
   service:
-    name: mongod
+    name: "{{ mongodb_app_name }}"
     state: restarted
